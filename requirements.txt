@@ -1,0 +1,15 @@
+torch
+torchvision
+torchaudio
+mlflow
+grad-cam
+fastapi
+uvicorn
+pydantic
+python-multipart
+streamlit
+Pillow
+requests
+dvc
+langchain
+langchain-community

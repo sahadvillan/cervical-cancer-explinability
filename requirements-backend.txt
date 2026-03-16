@@ -1,0 +1,14 @@
+torch
+torchvision
+grad-cam
+mlflow
+fastapi
+uvicorn
+pydantic
+python-multipart
+Pillow
+requests
+langchain
+langchain-community
+langchain-openai
+scikit-learn

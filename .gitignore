@@ -1,0 +1,12 @@
+venv/
+__pycache__/
+.env
+*.pyc
+
+# ML stuff
+mlruns/
+*.pth
+*.pt
+datasets/
+
+# DVC

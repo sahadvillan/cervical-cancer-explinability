@@ -25,7 +25,7 @@ This project demonstrates a production-style **MLOps pipeline for medical image 
 
 ## Streamlit Web Interface
 
-![App Interface](docs/images/app_interface.png)
+![App Interface](docs/app_interface.png)
 
 The frontend allows users to:
 
@@ -38,7 +38,7 @@ The frontend allows users to:
 
 ## FastAPI Backend Documentation
 
-![FastAPI Docs](docs/images/fastapi_docs.png)
+![FastAPI Docs](docs/fastapi_docs.png)
 
 The backend provides the following REST endpoints:
 
@@ -52,7 +52,7 @@ The backend provides the following REST endpoints:
 
 ## MLflow Experiment Tracking
 
-![MLflow](docs/images/mlflow_experiments.png)
+![MLflow](docs/mlflow_experiments.png)
 
 MLflow is used to track:
 
@@ -68,7 +68,7 @@ This enables experiment comparison and reproducibility.
 
 ## Grad-CAM Explainability
 
-![GradCAM](docs/images/gradcam_results.png)
+![GradCAM](docs/gradcam_results.png)
 
 Grad-CAM highlights the regions of the cell image that most influenced the model’s prediction, improving transparency and trust in AI-assisted diagnosis.
 

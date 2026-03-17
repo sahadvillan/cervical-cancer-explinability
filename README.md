@@ -1,121 +1,227 @@
 # Cervical Cancer Classification — End-to-End MLOps Project
 
-An end-to-end Machine Learning project that trains a deep learning model, explains its predictions visually (Grad-CAM), tracks experiments (MLflow), versions data (DVC), serves everything via a REST API (FastAPI), and wraps it all in a conversational AI interface (LLaMA 3 / OpenAI) for non-technical stakeholders.
+An end-to-end Machine Learning project that trains a deep learning model, explains its predictions visually (Grad-CAM), tracks experiments (MLflow), versions data (DVC), serves everything via a REST API (FastAPI), and integrates a conversational AI interface (LLaMA 3 / OpenAI) to make model predictions understandable for non-technical users.
 
 ---
 
-## Project Overview
+# Project Overview
 
-This project demonstrates a production-grade MLOps pipeline applied to a real-world medical imaging task — classifying cervical cancer cell images into 5 categories using transfer learning (ResNet18).
+This project demonstrates a production-style **MLOps pipeline for medical image classification** using cervical cancer cell images. The model classifies images into **five cell categories** using **transfer learning with ResNet18** and provides explainability through Grad-CAM.
 
 | Component | Technology |
 |---|---|
-| Model Training | PyTorch + ResNet18 (Transfer Learning) |
+| Model Training | PyTorch + ResNet18 |
 | Experiment Tracking | MLflow |
 | Data Versioning | DVC |
-| Explainability | Grad-CAM (pytorch-grad-cam) |
+| Explainability | Grad-CAM |
 | Backend API | FastAPI |
 | Chatbot | LangChain + LLaMA 3 (Ollama) / OpenAI |
 | Frontend UI | Streamlit |
-| Containerization | Docker + Docker Compose |
+| Containerization | Docker |
 
 ---
 
-## Features
+# Application Interface
 
-- **5-Class Classification** — Dyskeratotic, Koilocytotic, Metaplastic, Parabasal, Superficial-Intermediate
-- **Grad-CAM Explainability** — Visual heatmaps showing where the model focused in the image
-- **MLflow Dashboard** — Track, compare, and reproduce training experiments
-- **DVC Data Versioning** — Dataset changes are tracked just like code
-- **AI Chatbot** — Non-technical stakeholders can ask questions like "Why did the model predict this?", "How reliable is it?", "What does the heatmap mean?"
-- **LLM Toggle** — Switch between OpenAI API and local LLaMA 3 (via Ollama) with a single environment variable
+## Streamlit Web Interface
+
+![App Interface](docs/images/app_interface.png)
+
+The frontend allows users to:
+
+- Upload cervical cell images
+- View predicted cell class and confidence
+- Inspect Grad-CAM visual explanations
+- Ask the AI assistant questions about the prediction
 
 ---
 
-## Project Structure
+## FastAPI Backend Documentation
+
+![FastAPI Docs](docs/images/fastapi_docs.png)
+
+The backend provides the following REST endpoints:
+
+| Endpoint | Purpose |
+|---|---|
+| `/predict` | Classify uploaded cervical cell image |
+| `/explain` | Generate Grad-CAM explanation |
+| `/chat` | Ask AI questions about the prediction |
+
+---
+
+## MLflow Experiment Tracking
+
+![MLflow](docs/images/mlflow_experiments.png)
+
+MLflow is used to track:
+
+- Training loss
+- Validation accuracy
+- Precision, Recall, F1 score
+- Hyperparameters
+- Model artifacts
+
+This enables experiment comparison and reproducibility.
+
+---
+
+## Grad-CAM Explainability
+
+![GradCAM](docs/images/gradcam_results.png)
+
+Grad-CAM highlights the regions of the cell image that most influenced the model’s prediction, improving transparency and trust in AI-assisted diagnosis.
+
+---
+
+# Features
+
+### Multi-Class Cervical Cell Classification
+
+The model classifies images into five cell categories:
+
+- Dyskeratotic
+- Koilocytotic
+- Metaplastic
+- Parabasal
+- Superficial-Intermediate
+
+---
+
+### Explainable AI
+
+Grad-CAM provides visual explanations showing where the model focused when making predictions.
+
+---
+
+### Experiment Tracking
+
+MLflow records:
+
+- training metrics
+- validation metrics
+- hyperparameters
+- model artifacts
+
+---
+
+### Dataset Versioning
+
+DVC tracks dataset versions so experiments remain reproducible.
+
+---
+
+### AI Assistant for Model Interpretation
+
+Users can ask questions like:
+
+- Why did the model predict this class?
+- What does the heatmap show?
+- How reliable is this prediction?
+
+The chatbot answers using model context.
+
+---
+
+# Project Structure
 
 ```
 cervical_cancer_mlops/
 |
-|-- ml/
-|   |-- dataset.py      # Data loading & augmentation
-|   |-- model.py        # ResNet18 fine-tuned architecture
-|   |-- train.py        # Training loop + MLflow logging
-|   |-- explain.py      # Grad-CAM heatmap generation
+├── ml/
+│   ├── dataset.py
+│   ├── model.py
+│   ├── train.py
+│   └── explain.py
 |
-|-- backend/
-|   |-- main.py         # FastAPI: /predict, /explain, /chat endpoints
+├── backend/
+│   └── main.py
 |
-|-- frontend/
-|   |-- app.py          # Streamlit UI
+├── frontend/
+│   └── app.py
 |
-|-- data/               # DVC-tracked dataset
-|-- Dockerfile.backend
-|-- Dockerfile.frontend
-|-- docker-compose.yml
-|-- requirements*.txt
+├── docs/
+│   └── images/
+│       ├── app_interface.png
+│       ├── fastapi_docs.png
+│       ├── mlflow_experiments.png
+│       └── gradcam_results.png
+|
+├── data/                # Dataset tracked with DVC
+├── Dockerfile.backend
+├── Dockerfile.frontend
+├── docker-compose.yml
+├── requirements.txt
+└── README.md
 ```
 
 ---
 
-## Quick Start
+# Quick Start
 
-### 1. Train the Model
+## Train the Model
 
-```bash
-# Activate virtual environment (Windows)
+Activate environment
+
+```
 .\venv\Scripts\Activate.ps1
-
-# Run training — logs to MLflow automatically
-cd ml
-python train.py
-
-# View MLflow experiment dashboard
-mlflow ui
-# Open http://localhost:5000
 ```
 
-### 2. Launch the App (Docker)
+Run training
 
-```bash
+```
+cd ml
+python train.py
+```
+
+Start MLflow
+
+```
+mlflow ui
+```
+
+Open
+
+```
+http://localhost:5000
+```
+
+---
+
+## Run the Full Application
+
+```
 docker-compose up --build
 ```
 
-- Streamlit UI  → http://localhost:8501
-- FastAPI Docs  → http://localhost:8000/docs
+Services:
+
+| Service | URL |
+|---|---|
+| Streamlit UI | http://localhost:8501 |
+| FastAPI Docs | http://localhost:8000/docs |
+| MLflow | http://localhost:5000 |
 
 ---
 
-## Switch LLM Provider
+# Switching LLM Providers
 
-Change one line in `docker-compose.yml`:
+Modify `docker-compose.yml`
 
-```yaml
+```
 environment:
-  - LLM_PROVIDER=ollama    # Local LLaMA 3 (free, private)
-  # - LLM_PROVIDER=openai  # OpenAI API (requires key)
+  - LLM_PROVIDER=ollama
 ```
 
----
+Options:
 
-## MLflow Metrics Tracked
-
-- Training and Validation Loss per epoch
-- Accuracy, Precision, Recall, F1-Score
-- Model artifacts (.pth weights)
-- Hyperparameters (epochs, batch size, learning rate)
+| Provider | Description |
+|---|---|
+| ollama | Local LLaMA 3 model |
+| openai | OpenAI GPT models |
 
 ---
 
-## How It Works
-
-1. User uploads a cervical cancer cell image
-2. ResNet18 model predicts the cell type and confidence score
-3. Grad-CAM generates a heatmap showing where the model focused
-4. The AI chatbot (LLaMA 3 or GPT) answers questions with full model context injected
-
----
-
-## Tech Stack
+# Technology Stack
 
 Python · PyTorch · MLflow · DVC · FastAPI · Streamlit · LangChain · Docker · Grad-CAM · ResNet18

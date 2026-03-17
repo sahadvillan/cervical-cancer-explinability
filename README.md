@@ -4,6 +4,23 @@ An end-to-end Machine Learning project that trains a deep learning model, explai
 
 ---
 
+# Project Demonstration
+
+A short walkthrough of the system showing:
+
+- Streamlit interface for image upload
+- FastAPI backend endpoints
+- Grad-CAM visual explanations
+- MLflow experiment tracking
+- AI chatbot interaction
+
+▶ **Watch the demo video**
+
+[Explanatory Video](docs/Explanatory Video.mp4)
+
+---
+
+
 # Project Overview
 
 This project demonstrates a production-style **MLOps pipeline for medical image classification** using cervical cancer cell images. The model classifies images into **five cell categories** using **transfer learning with ResNet18** and provides explainability through Grad-CAM.

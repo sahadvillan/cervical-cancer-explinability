@@ -16,7 +16,7 @@ A short walkthrough of the system showing:
 
 ▶ **Watch the demo video**
 
-[Explanatory Video](docs/Explanatory Video.mp4)
+[Explanatory Video](docs/Explanatory_Video.mp4)
 
 ---
 

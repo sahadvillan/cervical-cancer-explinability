@@ -14,9 +14,11 @@ A short walkthrough of the system showing:
 - MLflow experiment tracking
 - AI chatbot interaction
 
-▶ **Watch the demo video**
 
-[Explanatory Video](docs/Explanatory_Video.mp4)
+
+[![Watch the Demo](docs/app_interface.png)](docs/Explanatory_Video.mp4)
+
+Click the image above to watch the full system walkthrough.
 
 ---
 
